@@ -19,7 +19,7 @@ namespace APICoronaTracker.Controllers
     {
         // GET: api/CoronaCountry
         /// <summary>
-        /// Status Modeli içerisindeki Listeyi Döndürür
+        /// Status Modeli içerisindeki Listeyi Döndürür.
         /// </summary>
         /// <returns></returns>
         public string Get()

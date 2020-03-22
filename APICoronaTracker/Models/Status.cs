@@ -9,10 +9,10 @@ namespace APICoronaTracker.Models
     [DataContract]
     public class CoronaCountryDataset
     {
-        [DataMember(Name = "success")]
+        [DataMember(Name = "success")]//Success
         public string Success { get; set; }
 
-        [DataMember(Name = "result")]
+        [DataMember(Name = "result")]//Result
         public List<CoronaCountry> Result { get; set; }
         
     }

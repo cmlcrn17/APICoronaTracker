@@ -9,7 +9,8 @@ namespace APICoronaTracker.Models
     [DataContract]
     public class CoronaCountry
     {
-        [DataMember(Name = "country")]
+        //Items
+        [DataMember(Name = "country")] 
         public string Country { get; set; }
 
         [DataMember(Name = "totalcases")]
