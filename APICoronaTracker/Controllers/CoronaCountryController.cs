@@ -21,7 +21,7 @@ namespace APICoronaTracker.Controllers
         /// <summary>
         /// Status Modeli içerisindeki Listeyi Döndürür.
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns> 
         public IEnumerable<CoronaCountry> Get() 
         {
             string dataFilePath = string.Format("{0}\\CoronaCountry.json", ConfigurationManager.AppSettings["DataPath"]);
