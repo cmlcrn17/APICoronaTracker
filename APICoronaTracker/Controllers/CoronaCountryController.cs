@@ -22,12 +22,12 @@ namespace APICoronaTracker.Controllers
         /// Status Modeli içerisindeki Listeyi Döndürür.
         /// </summary>
         /// <returns></returns>
-        public string Get()
+        public IEnumerable<CoronaCountry> Get()
         {
             string dataFilePath = string.Format("{0}\\CoronaCountry.json", ConfigurationManager.AppSettings["DataPath"]);
 
             FileInfo fileInfo = new FileInfo(dataFilePath);
-            
+
             if (!fileInfo.Exists || (DateTime.Now - fileInfo.LastWriteTime).TotalMinutes > 10)
             {
                 var client = new RestClient(ConfigurationManager.AppSettings["ApiURL"]);
@@ -38,10 +38,11 @@ namespace APICoronaTracker.Controllers
                 IRestResponse response = client.Execute(request);
                 CoronaCountryDataset c = Newtonsoft.Json.JsonConvert.DeserializeObject<CoronaCountryDataset>(response.Content.ToString());
                 if (!Directory.Exists(ConfigurationManager.AppSettings["DataPath"])) { Directory.CreateDirectory(ConfigurationManager.AppSettings["DataPath"]); }
-                System.IO.File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(c.Result)); 
+                System.IO.File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(c.Result));
             }
 
-            return System.IO.File.ReadAllText(dataFilePath);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<List<CoronaCountry>>(System.IO.File.ReadAllText(dataFilePath));
         }
+
     }
 }
